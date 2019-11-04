@@ -7,9 +7,14 @@
     "@types/node": "12.12.5",
     "@types/react": "16.9.11",
     "@types/react-dom": "16.9.3",
+    "faker": "^4.1.0",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
+    "react-router-dom": "^5.1.2",
     "react-scripts": "3.2.0",
+    "redux": "^4.0.4",
+    "redux-thunk": "^2.3.0",
+    "semantic-ui-react": "^0.88.1",
     "typescript": "3.6.4"
   },
   "scripts": {
