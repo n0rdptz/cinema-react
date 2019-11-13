@@ -1,12 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import {BrowserRouter} from 'react-router-dom';
+import store from './store';
+import {Provider} from 'react-redux';
+import './styles/main.scss';
+import App from './components/App/App';
 import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import {getFilms, getSeances, getTickets} from './backend/data';
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
+//console.log(getFilms());
+console.log(getSeances());
+console.log(getTickets());
+
+ReactDOM.render(
+  <Provider store={store}>
+    <BrowserRouter>
+      <App/>
+    </BrowserRouter>
+  </Provider>
+  , document.getElementById('root')
+);
 serviceWorker.unregister();
