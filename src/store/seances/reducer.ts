@@ -1,27 +1,44 @@
 import {
-  FilmsState,
-  FilmsActionTypes,
-  REQUEST_FILMS,
-  RECEIVE_FILMS
+  Seance,
+  SeancesState,
+  SeancesActionTypes,
+  REQUEST_SEANCES,
+  RECEIVE_SEANCES,
+  RESET_SEANCES
 } from './types';
+import { normalizeArray } from "../../services/utils";
 
-const initialState: FilmsState = {
+const initialState: SeancesState = {
   isFetching: false,
-  films: []
+  seances: {
+    byId: {},
+    allIds: []
+  }
 };
 
-export function seancesReducer(state = initialState, action: FilmsActionTypes) {
+export function seancesReducer(state: SeancesState = initialState, action: SeancesActionTypes): SeancesState {
   switch (action.type) {
-    case REQUEST_FILMS:
+    case REQUEST_SEANCES:
       return {
         ...state,
         isFetching: true
       };
-    case RECEIVE_FILMS:
+    case RECEIVE_SEANCES:
       return {
         ...state,
-        films: action.films,
+        seances: {
+          byId: normalizeArray<Seance>(action.seances),
+          allIds: action.seances.map((seance) => String(seance.id))
+        },
         isFetching: false
+      };
+    case RESET_SEANCES:
+      return {
+        ...state,
+        seances: {
+          byId: {},
+          allIds: []
+        }
       };
     default:
       return state;

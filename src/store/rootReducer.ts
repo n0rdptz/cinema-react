@@ -6,7 +6,7 @@ import {ticketsReducer} from './tickets/reducer';
 const rootReducer = combineReducers({
   films: filmsReducer,
   seances: seancesReducer,
-  tickets: ticketsReducer,
+  // tickets: ticketsReducer,
 });
 
 export type AppState = ReturnType<typeof rootReducer>

@@ -20,6 +20,7 @@ interface AppProps {
 }
 
 const App: React.FC<AppProps> = (props) => {
+  const films = Object.values(props.films.films.byId);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -30,7 +31,7 @@ const App: React.FC<AppProps> = (props) => {
     <div className="App">
       <Route exact path="/" render={() => (
         <Page>
-          <Films films={props.films.films}/>
+          <Films films={films}/>
         </Page>
       )}/>
 

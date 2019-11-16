@@ -1,25 +1,32 @@
-export const REQUEST_FILMS = 'REQUEST_FILMS';
-export const RECEIVE_FILMS = 'RECEIVE_FILMS';
+import { NormalizedObjects } from '../types';
 
-export interface Film {
+export const REQUEST_SEANCES = 'REQUEST_SEANCES';
+export const RECEIVE_SEANCES = 'RECEIVE_SEANCES';
+export const RESET_SEANCES = 'RESET_SEANCES';
+
+export interface Seance {
   id: number
-  title: string
-  description: string
-  cover: string
+  filmId: number
+  time: string
+  hallNumber: number
 }
 
-export interface FilmsState {
+export interface SeancesState {
   isFetching: boolean
-  films: Film[]
+  seances: NormalizedObjects<Seance>
 }
 
-interface RequestFilmsAction {
-  type: typeof REQUEST_FILMS
+interface RequestSeancesAction {
+  type: typeof REQUEST_SEANCES
 }
 
-interface ReceiveFilmsAction {
-  type: typeof RECEIVE_FILMS,
-  films: Film[]
+interface ReceiveSeancesAction {
+  type: typeof RECEIVE_SEANCES,
+  seances: Seance[]
 }
 
-export type FilmsActionTypes = RequestFilmsAction | ReceiveFilmsAction
+interface ResetSeancesAction {
+  type: typeof RESET_SEANCES
+}
+
+export type SeancesActionTypes = RequestSeancesAction | ReceiveSeancesAction | ResetSeancesAction

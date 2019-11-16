@@ -16,3 +16,12 @@ export const getRandomTime = () => {
 
   return `${formattedHours}:${formattedMinutes}`;
 };
+
+export const normalizeArray = <T>(array: T[]): { [key: string]: T } =>
+  array.reduce((result: { [key: string]: T }, current: T) => {
+    // @ts-ignore
+    result[current.id] = current;
+    return result;
+  }, {});
+
+// @ts-ignore

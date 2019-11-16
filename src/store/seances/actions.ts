@@ -1,12 +1,16 @@
-import {Film, REQUEST_FILMS, RECEIVE_FILMS, FilmsActionTypes} from './types'
+import {RECEIVE_SEANCES, REQUEST_SEANCES, RESET_SEANCES, Seance, SeancesActionTypes} from './types'
 
-export function requestFilms(): FilmsActionTypes {
-  return {type: REQUEST_FILMS}
+export function requestSeances(): SeancesActionTypes {
+  return {type: REQUEST_SEANCES}
 }
 
-export function receiveFilms(films: Film[]): FilmsActionTypes {
+export function receiveSeances(seances: Seance[]): SeancesActionTypes {
   return {
-    type: RECEIVE_FILMS,
-    films
+    type: RECEIVE_SEANCES,
+    seances
   }
+}
+
+export function resetSeances(): SeancesActionTypes {
+  return {type: RESET_SEANCES}
 }

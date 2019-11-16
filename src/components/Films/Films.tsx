@@ -3,7 +3,7 @@ import FilmItem from '../FilmItem/FilmItem';
 import * as FilmTypes from "../../store/films/types";
 
 interface FilmsProps {
-  films: FilmTypes.Film[]
+  films: any[]
 }
 
 const Films: React.FC<FilmsProps> = (props) => {

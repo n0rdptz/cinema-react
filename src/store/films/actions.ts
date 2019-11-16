@@ -1,11 +1,7 @@
-import {Film, REQUEST_FILMS, ERROR_REQUEST_FILMS, RECEIVE_FILMS, FilmsActionTypes} from './types'
+import {Film, REQUEST_FILMS, RECEIVE_FILMS, STOP_FILMS_FETCHING, FilmsActionTypes} from './types'
 
 export function requestFilms(): FilmsActionTypes {
   return {type: REQUEST_FILMS}
-}
-
-export function errorRequestFilms(): FilmsActionTypes {
-  return {type: ERROR_REQUEST_FILMS}
 }
 
 export function receiveFilms(films: Film[]): FilmsActionTypes {
@@ -13,4 +9,8 @@ export function receiveFilms(films: Film[]): FilmsActionTypes {
     type: RECEIVE_FILMS,
     films
   }
+}
+
+export function stopFilmsFetching(): FilmsActionTypes {
+  return {type: STOP_FILMS_FETCHING}
 }

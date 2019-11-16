@@ -10,6 +10,8 @@ const MIN_ROWS_IN_HALL = 8;
 const MAX_ROWS_IN_HALL = 10;
 const TICKET_PRICE = 20;
 
+const REQUEST_DELAY = 500;
+
 const films = [];
 const seances = [];
 const tickets = [];
@@ -65,22 +67,31 @@ generateFilms();
 generateSeances();
 generateTickets();
 
-export const getFilms = () => {
-  return Promise.resolve(films);
-};
+export const getFilms = () =>
+  new Promise((resolve) => {
+    setTimeout(() => resolve(films), REQUEST_DELAY);
+  });
 
-export const getSeances = () => {
-  return Promise.resolve(seances);
-};
+export const getSeances = () =>
+  new Promise((resolve) => {
+    setTimeout(() => resolve(seances), REQUEST_DELAY);
+  });
 
 export const getSeancesByFilmId = (filmId) => {
-  return Promise.resolve(seances.filter((seance) => seance.filmId === filmId));
+  const seancesByFilmId = seances.filter((seance) => seance.filmId === filmId);
+  return new Promise((resolve) => {
+    setTimeout(() => resolve(seancesByFilmId), REQUEST_DELAY);
+  });
 };
 
-export const getTickets = () => {
-  return Promise.resolve(tickets);
-};
+export const getTickets = () =>
+  new Promise((resolve) => {
+    setTimeout(() => resolve(tickets), REQUEST_DELAY);
+  });
 
 export const getTicketsBySeanceId = (seanceId) => {
-  return Promise.resolve(tickets.filter((ticket) => ticket.seanceId === seanceId));
+  const ticketsBySeanceId = tickets.filter((ticket) => ticket.seanceId === seanceId);
+  return new Promise((resolve) => {
+    setTimeout(() => resolve(ticketsBySeanceId), REQUEST_DELAY);
+  });
 };

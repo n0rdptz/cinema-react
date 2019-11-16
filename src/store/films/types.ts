@@ -1,7 +1,8 @@
+import { NormalizedObjects } from '../types';
+
 export const REQUEST_FILMS = 'REQUEST_FILMS';
-export const ERROR_REQUEST_FILMS = 'ERROR_REQUEST_FILMS';
-export const RESET_ERRORS = 'RESET_ERRORS';
 export const RECEIVE_FILMS = 'RECEIVE_FILMS';
+export const STOP_FILMS_FETCHING = 'STOP_FILMS_FETCHING';
 
 export interface Film {
   id: number
@@ -13,19 +14,11 @@ export interface Film {
 export interface FilmsState {
   isFetching: boolean,
   isError: boolean,
-  films: Film[]
+  films: NormalizedObjects<Film>
 }
 
 interface RequestFilmsAction {
   type: typeof REQUEST_FILMS
-}
-
-interface ErrorRequestFilmsAction {
-  type: typeof ERROR_REQUEST_FILMS
-}
-
-interface ResetErrorsAction {
-  type: typeof RESET_ERRORS
 }
 
 interface ReceiveFilmsAction {
@@ -33,4 +26,8 @@ interface ReceiveFilmsAction {
   films: Film[]
 }
 
-export type FilmsActionTypes = RequestFilmsAction | ErrorRequestFilmsAction | ResetErrorsAction | ReceiveFilmsAction
+interface StopFilmsFetchingAction {
+  type: typeof STOP_FILMS_FETCHING
+}
+
+export type FilmsActionTypes = RequestFilmsAction | StopFilmsFetchingAction | ReceiveFilmsAction

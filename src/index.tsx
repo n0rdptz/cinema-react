@@ -7,12 +7,6 @@ import './styles/main.scss';
 import App from './components/App/App';
 import * as serviceWorker from './serviceWorker';
 
-import {getFilms, getSeances, getTickets} from './backend/data';
-
-//console.log(getFilms());
-console.log(getSeances());
-console.log(getTickets());
-
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
