@@ -26,10 +26,10 @@ const TicketsReserve: React.FC<ReserveTicketsProps> = (props) => {
     <ReservedTicket key={ticket.id} ticket={ticket}/>
   ));
 
-  async function reserve() {
+  function reserve() {
     if (seanceId && tickets.reservedTickets.allIds.length) {
       const reservedTickets = Object.values(tickets.reservedTickets.byId).map((ticket) => ticket.id);
-      await dispatch(thunkReserveTicketsBy(Number(seanceId), reservedTickets));
+      dispatch(thunkReserveTicketsBy(Number(seanceId), reservedTickets));
       dispatch(resetReservedTickets())
     }
   }
