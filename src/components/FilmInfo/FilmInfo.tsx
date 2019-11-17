@@ -31,7 +31,7 @@ const FilmInfo: React.FC<FilmInfoProps> = (props) => {
     <div className="film-info">
       <Breadcrumbs items={breadcrumbItems}/>
       <div className="film__cover">
-        <img src={film.cover} alt={`cover-${film.id}`}/>
+        <img className="film__cover__image" src={film.cover} alt={`cover-${film.id}`}/>
       </div>
 
       <h2 className="film__title">{film.title}</h2>
