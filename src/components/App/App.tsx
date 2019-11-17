@@ -37,13 +37,13 @@ const App: React.FC<AppProps> = (props) => {
 
       <Route exact path="/:filmId" render={() => (
         <Page>
-          <FilmPage />
+          <FilmPage/>
         </Page>
       )}/>
 
       <Route path="/:filmId/:seanceId" render={() => (
         <Page>
-          <SeancePage />
+          <SeancePage/>
         </Page>
       )}/>
     </div>

@@ -1,27 +1,34 @@
 import {
-  FilmsState,
-  FilmsActionTypes,
-  REQUEST_FILMS,
-  RECEIVE_FILMS
+  TicketsState,
+  TicketsActionTypes,
+  SET_RESERVED_TICKETS,
+  RESET_RESERVED_TICKETS
 } from './types';
 
-const initialState: FilmsState = {
-  isFetching: false,
-  films: []
+const initialState: TicketsState = {
+  reservedTickets: {
+    byId: {},
+    allIds: []
+  }
 };
 
-export function ticketsReducer(state = initialState, action: FilmsActionTypes) {
+export function ticketsReducer(state = initialState, action: TicketsActionTypes): TicketsState {
   switch (action.type) {
-    case REQUEST_FILMS:
+    case SET_RESERVED_TICKETS:
       return {
         ...state,
-        isFetching: true
+        reservedTickets: {
+          byId: action.tickets,
+          allIds: Object.keys(action.tickets).map(key => String(key))
+        }
       };
-    case RECEIVE_FILMS:
+    case RESET_RESERVED_TICKETS:
       return {
         ...state,
-        films: action.films,
-        isFetching: false
+        reservedTickets: {
+          byId: {},
+          allIds: []
+        }
       };
     default:
       return state;

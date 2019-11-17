@@ -20,12 +20,12 @@ interface PageContentProps {
 }
 
 const PageContent: React.FC<PageContentProps> = (props) => {
-  const { entity, isFetching } = props;
+  const {entity, isFetching} = props;
 
   if (!entity && isFetching) {
     return (
       <div className="flex-center">
-        <Loader />
+        <Loader/>
       </div>
     );
   }
@@ -33,13 +33,13 @@ const PageContent: React.FC<PageContentProps> = (props) => {
   if (!entity) {
     return (
       <div className="flex-center">
-        <NotFoundPage />
+        <NotFoundPage/>
       </div>
     );
   }
 
   return (
-    <div>{props.children}</div>
+    <div className="page__content">{props.children}</div>
   );
 };
 

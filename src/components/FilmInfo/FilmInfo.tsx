@@ -23,14 +23,15 @@ const FilmInfo: React.FC<FilmInfoProps> = (props) => {
   const seances = Object.values(props.seances.seances.byId);
   const isSeancesFetching: boolean = props.seances.isFetching;
   const breadcrumbItems = [
-    { label: 'Films', pathname: `/`}
+    {label: 'Films', pathname: `/`},
+    {label: `Film ${film.title}`, active: true}
   ];
 
   return (
     <div className="film-info">
-      <Breadcrumbs items={breadcrumbItems} />
+      <Breadcrumbs items={breadcrumbItems}/>
       <div className="film__cover">
-        <img src={film.cover} alt={`cover-${film.id}`} />
+        <img src={film.cover} alt={`cover-${film.id}`}/>
       </div>
 
       <h2 className="film__title">{film.title}</h2>
@@ -41,9 +42,9 @@ const FilmInfo: React.FC<FilmInfoProps> = (props) => {
         <h3>Seances</h3>
 
         {isSeancesFetching ? (
-          <Loader />
+          <Loader/>
         ) : (
-          <SeancesTable seances={seances} />
+          <SeancesTable seances={seances}/>
         )}
       </div>
     </div>

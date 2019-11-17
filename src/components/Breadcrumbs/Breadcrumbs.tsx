@@ -5,7 +5,8 @@ import {Seance} from "../../store/seances/types";
 
 interface breadcrumbsItem {
   label: string,
-  pathname: string
+  pathname?: string,
+  active?: boolean
 }
 
 interface BreadcrumbsProps {
@@ -13,6 +14,14 @@ interface BreadcrumbsProps {
 }
 
 function generateBreadcrumb(item: breadcrumbsItem, index: number): JSX.Element {
+  if (item.active) {
+    return (
+      <span className="breadcrumbs__item" key={index}>
+        {item.label}
+      </span>
+    );
+  }
+
   return (
     <Link className="breadcrumbs__item" key={index} to={{pathname: item.pathname}}>
       {item.label}

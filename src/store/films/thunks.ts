@@ -1,7 +1,7 @@
 import {getFilms} from '../../backend/data';
 import {Action, Dispatch} from 'redux';
 import {FilmsActionTypes} from './types';
-import {requestFilms, receiveFilms, stopFilmsFetching} from './actions';
+import {requestFilms, receiveFilms, stopFetchingFilms} from './actions';
 import {AppState} from '../rootReducer';
 import {ThunkAction} from "redux-thunk";
 
@@ -12,7 +12,7 @@ export const thunkGetFilms = (): ThunkAction<void, AppState, null, Action<string
       const films = await getFilms();
       dispatch(receiveFilms(films));
     } catch (e) {
-      dispatch(stopFilmsFetching());
+      dispatch(stopFetchingFilms());
     }
   };
 };

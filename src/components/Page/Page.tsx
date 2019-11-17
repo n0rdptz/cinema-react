@@ -5,7 +5,7 @@ const Page: React.FC = (props) => {
   return (
     <div className="page">
       <PageHeader/>
-      <div className="page__content">{props.children}</div>
+      <div className="page__content-wrapper">{props.children}</div>
     </div>
   );
 };

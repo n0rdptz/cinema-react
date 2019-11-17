@@ -1,13 +1,15 @@
-$brand-color: #B2DFDB;
-$text-color: #424242;
-$table-hover-color: #dfbdb2;
-$link-color: #c6b2df;
-$link-visited-color: #dfd3b2;
+$light-teal: #B2DFDB;
+$teal: #009688;
+$black: #424242;
+$white: #fff;
+$light-red: #dfbdb2;
+$magenta: #960053;
+$dark-yellow: #966e00;
 
 html {
   font-family: 'Nunito', sans-serif;
   font-size: 12px;
-  color: $text-color;
+  color: $black;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -60,7 +62,7 @@ h1, h2, h3, h4, h5, h6 {
   min-height: 100vh;
 
   &__header,
-  &__content {
+  &__content-wrapper {
     padding: 0 20px;
   }
 
@@ -72,22 +74,27 @@ h1, h2, h3, h4, h5, h6 {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: $brand-color;
-    border-bottom: 2px solid $text-color;
-    color: $text-color;
+    background-color: $light-teal;
+    border-bottom: 2px solid $black;
+    color: $black;
     font-size: 1.5rem;
 
     &__link {
-      color: $text-color;
+      color: $black;
       text-decoration: none;
     }
   }
 
-  &__content {
+  &__content-wrapper {
     display: flex;
     max-width: 1920px;
     margin: 0 auto;
     padding: 20px;
+  }
+
+  &__content {
+    width: 100%;
+    height: 100%;
   }
 }
 
@@ -131,6 +138,7 @@ h1, h2, h3, h4, h5, h6 {
     .film-item__cover {
       box-shadow: 0 10px 14px rgba(0, 0, 0, 0.6);
     }
+
     .film-item__title {
       text-decoration: underline;
     }
@@ -159,21 +167,23 @@ h1, h2, h3, h4, h5, h6 {
 
     &:hover {
       .table__td {
-        background-color: $table-hover-color;
+        background-color: $light-red;
       }
     }
   }
 
   &__th {
-    background-color: $brand-color;
+    background-color: $light-teal;
   }
+
   &__td {
 
   }
+
   &__th,
   &__td {
     padding: 4px;
-    border-bottom: 1px solid $text-color;
+    border-bottom: 1px solid $black;
     text-align: left;
 
     &.digits {
@@ -183,9 +193,147 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .breadcrumbs {
+  display: flex;
+  align-items: center;
   padding: 8px 0;
 
   &__item {
+    text-decoration: none;
 
+    &:not(:first-child) {
+      &:before {
+        content: '/';
+      }
+    }
+  }
+}
+
+.hall {
+  width: 100%;
+
+  &__row {
+    width: 100%;
+
+    &__title {
+      font-size: 0.75rem;
+    }
+    &__seats {
+      width: 100%;
+      display: flex;
+    }
+
+    &:not(:first-of-type) {
+      margin-top: 1%;
+    }
+  }
+
+  &__seat {
+    width: 8%;
+    padding-top: 8%;
+    background-color: $teal;
+    color: $white;
+    border-radius: 10%;
+    margin-right: 2%;
+    transition: all 200ms ease;
+    position: relative;
+
+    &.reserved {
+      background-color: $magenta;
+    }
+
+    &.selected {
+      background-color: $dark-yellow;
+    }
+
+    &:not(.reserved) {
+      cursor: pointer;
+
+      &:hover {
+        box-shadow: 0 2px 2px rgba(0, 0, 0, 0.4);
+        transform: scale(1.05);
+      }
+    }
+
+    &__number {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+    }
+  }
+}
+
+.btn {
+  padding: 8px 12px;
+  border-radius: 4px;
+  background-color: $teal;
+  color: $white;
+  cursor: pointer;
+  transition: filter 200ms ease;
+
+  &:hover {
+    filter: brightness(1.1);
+  }
+
+  &:active {
+    filter: brightness(0.9);
+  }
+
+  &.reserve-btn {
+    margin-top: 8px;
+  }
+}
+
+.tickets-reserve {
+  &__tickets {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+}
+
+.reserved-ticket {
+  position: relative;
+  padding: 4px;
+  background-color: $light-teal;
+  margin-top: 4px;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: transform 200ms ease;
+
+  &:after {
+    content: 'x';
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20px;
+    height: 100%;
+    opacity: 0;
+    border-radius: 2px;
+    color: $white;
+    background-color: $black;
+    transition: opacity 200ms ease;
+  }
+
+  &:hover {
+    transform: scale(1.05);
+
+    &:after {
+      opacity: 1;
+    }
+  }
+
+  &:not(:last-of-type) {
+    margin-right: 4px;
   }
 }

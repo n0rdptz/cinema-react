@@ -1,25 +1,29 @@
-export const REQUEST_FILMS = 'REQUEST_FILMS';
-export const RECEIVE_FILMS = 'RECEIVE_FILMS';
+export const SET_RESERVED_TICKETS = 'SET_RESERVED_TICKETS';
+export const RESET_RESERVED_TICKETS = 'RESET_RESERVED_TICKETS';
 
-export interface Film {
+export interface Ticket {
   id: number
-  title: string
-  description: string
-  cover: string
+  seanceId: number
+  price: number
+  row: number
+  seat: number
+  reserved: string
 }
 
-export interface FilmsState {
-  isFetching: boolean
-  films: Film[]
+export interface TicketsState {
+  reservedTickets: {
+    byId: { [key: number]: Ticket },
+    allIds: string[]
+  }
 }
 
-interface RequestFilmsAction {
-  type: typeof REQUEST_FILMS
+interface SetReservedTicketsAction {
+  type: typeof SET_RESERVED_TICKETS
+  tickets: { [key: number]: Ticket }
 }
 
-interface ReceiveFilmsAction {
-  type: typeof RECEIVE_FILMS,
-  films: Film[]
+interface ResetReservedTicketsAction {
+  type: typeof RESET_RESERVED_TICKETS
 }
 
-export type FilmsActionTypes = RequestFilmsAction | ReceiveFilmsAction
+export type TicketsActionTypes = SetReservedTicketsAction | ResetReservedTicketsAction

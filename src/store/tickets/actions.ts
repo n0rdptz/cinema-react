@@ -1,12 +1,9 @@
-import {Film, REQUEST_FILMS, RECEIVE_FILMS, FilmsActionTypes} from './types'
+import {Ticket, SET_RESERVED_TICKETS, RESET_RESERVED_TICKETS, TicketsActionTypes} from './types'
 
-export function requestFilms(): FilmsActionTypes {
-  return {type: REQUEST_FILMS}
+export function setReserveTickets(tickets: { [key: number]: Ticket }): TicketsActionTypes {
+  return {type: SET_RESERVED_TICKETS, tickets}
 }
 
-export function receiveFilms(films: Film[]): FilmsActionTypes {
-  return {
-    type: RECEIVE_FILMS,
-    films
-  }
+export function resetReservedTickets(): TicketsActionTypes {
+  return {type: RESET_RESERVED_TICKETS}
 }

@@ -4,9 +4,9 @@ import {capitalize, getRandomInt, getRandomTime} from '../services/utils';
 const FILMS_COUNT = 20;
 const MIN_FILM_SEANCES = 1;
 const MAX_FILM_SEANCES = 3;
-const MIN_SEATS_IN_ROW = 8;
+const MIN_SEATS_IN_ROW = 10;
 const MAX_SEATS_IN_ROW = 10;
-const MIN_ROWS_IN_HALL = 8;
+const MIN_ROWS_IN_HALL = 10;
 const MAX_ROWS_IN_HALL = 10;
 const TICKET_PRICE = 20;
 
@@ -56,7 +56,7 @@ function generateTickets() {
           price: TICKET_PRICE,
           row,
           seat,
-          taken: !!getRandomInt(0, 1)
+          reserved: !!getRandomInt(0, 1)
         });
       }
     }
@@ -77,6 +77,22 @@ export const getSeances = () =>
     setTimeout(() => resolve(seances), REQUEST_DELAY);
   });
 
+export const getSeanceById = (id) => {
+  const seancesById = seances.find((seance) => seance.id === id);
+  const film = films.find((film) => film.id === seancesById.filmId);
+  const ticketsBySeanceId = tickets.filter((ticket) => ticket.seanceId === id);
+  return new Promise((resolve) => {
+    setTimeout(() => resolve({
+        filmTitle: film.title,
+        filmDescription: film.description,
+        filmCover: film.cover,
+        ...seancesById,
+        tickets: ticketsBySeanceId
+      }
+    ), REQUEST_DELAY);
+  });
+};
+
 export const getSeancesByFilmId = (filmId) => {
   const seancesByFilmId = seances.filter((seance) => seance.filmId === filmId);
   return new Promise((resolve) => {
@@ -94,4 +110,17 @@ export const getTicketsBySeanceId = (seanceId) => {
   return new Promise((resolve) => {
     setTimeout(() => resolve(ticketsBySeanceId), REQUEST_DELAY);
   });
+};
+
+function reserveTickets(ids) {
+  tickets.forEach((ticket) => {
+    if (ids.includes(ticket.id)) {
+      ticket.reserved = true;
+    }
+  });
+}
+
+export const reserveTicketsById = (seanceId, ticketIds) => {
+  reserveTickets(ticketIds);
+  return tickets.filter((ticket) => ticket.seanceId === seanceId);
 };

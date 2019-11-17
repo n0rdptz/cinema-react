@@ -22,7 +22,7 @@ interface FilmPageProps {
 }
 
 const FilmPage: React.FC<FilmPageProps> = (props) => {
-  const { filmId } = useParams();
+  const {filmId} = useParams();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -40,7 +40,7 @@ const FilmPage: React.FC<FilmPageProps> = (props) => {
 
   return (
     <PageContent entity={film} isFetching={isFilmsFetching}>
-      {film && <FilmInfo film={film} />}
+      {film && <FilmInfo film={film}/>}
     </PageContent>
   );
 };

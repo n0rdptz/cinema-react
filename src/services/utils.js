@@ -1,11 +1,11 @@
-export const capitalize = (str: string) => {
+export const capitalize = (str) => {
   return str[0].toUpperCase() + str.slice(1);
 };
 
-export const getRandomInt = (min: number, max: number) => {
+export const getRandomInt = (min, max) => {
   min = Math.ceil(min);
   max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is exclusive and the minimum is inclusive
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
 export const getRandomTime = () => {
@@ -17,11 +17,15 @@ export const getRandomTime = () => {
   return `${formattedHours}:${formattedMinutes}`;
 };
 
-export const normalizeArray = <T>(array: T[]): { [key: string]: T } =>
-  array.reduce((result: { [key: string]: T }, current: T) => {
+export const normalizeArray = (array) =>
+  array.reduce((result, current) => {
     // @ts-ignore
     result[current.id] = current;
     return result;
   }, {});
 
-// @ts-ignore
+export const normalizeTicketsArray = (array) =>
+  array.reduce((result, current) => {
+    result[`${current.row}_${current.seat}`] = current;
+    return result;
+  }, {});
